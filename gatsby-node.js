@@ -5,3 +5,32 @@
  */
 
 // You can delete this file if you're not using it
+const path = require(`path`)
+
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
+
+  const articles = await graphql(`
+    {
+      allNodeArticle {
+        nodes {
+          id
+          title
+          path {
+            alias
+          }
+        }
+      }
+    }
+  `)
+
+  articles.data.allNodeArticle.nodes.map(article =>
+    createPage({
+      path: article.path.alias,
+      component: path.resolve(`./src/templates/article.js`),
+      context: {
+        articleId: article.id,
+      },
+    })
+  )
+}
