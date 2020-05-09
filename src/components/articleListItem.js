@@ -4,20 +4,12 @@ import PropTypes from "prop-types"
 import React from "react"
 
 const ArticleListItem = ({ title, path, imagePath, imageAlt }) => (
-  <div
-    style={{
-      display: `flex`,
-      flexDirection: `column`,
-      alignItems: `center`,
-      margin: `0 1.25rem 1rem`,
-      width: `calc(33% - 2.5rem)`,
-    }}
-  >
+  <div className="article-list-item">
     <Link to={path} style={{ textDecoration: `none` }}>
-      <Img fixed={imagePath} alt={imageAlt} />
-      <h4 style={{ color: `initial`, fontWeight: `400`, textAlign: `center` }}>
+      <Img fluid={imagePath} alt={imageAlt} />
+      <h3 style={{ color: `initial`, fontWeight: `400`, textAlign: `center` }}>
         {title}
-      </h4>
+      </h3>
     </Link>
   </div>
 )

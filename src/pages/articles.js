@@ -12,12 +12,7 @@ const Articles = ({ data }) => {
       <SEO title="Articles" />
       <h1>Articles</h1>
 
-      <div
-        style={{
-          display: `flex`,
-          flexWrap: `wrap`,
-        }}
-      >
+      <div className="article-list">
         {articles.map(article => (
           <ArticleListItem
             key={article.id}
@@ -25,7 +20,7 @@ const Articles = ({ data }) => {
             path={article.path.alias}
             imagePath={
               article.relationships.field_media_image.relationships
-                .field_media_image.localFile.childImageSharp.fixed
+                .field_media_image.localFile.childImageSharp.fluid
             }
             imageAlt={
               article.relationships.field_media_image.field_media_image.alt
@@ -61,8 +56,8 @@ export const data = graphql`
               field_media_image {
                 localFile {
                   childImageSharp {
-                    fixed(width: 280) {
-                      ...GatsbyImageSharpFixed
+                    fluid(maxWidth: 300, maxHeight: 260) {
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
