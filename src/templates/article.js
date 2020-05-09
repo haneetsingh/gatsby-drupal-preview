@@ -1,4 +1,5 @@
 import { graphql } from "gatsby"
+import Img from "gatsby-image"
 import PropTypes from "prop-types"
 import React from "react"
 import Layout from "../components/layout"
@@ -10,14 +11,16 @@ const Article = ({ data }) => {
     <Layout>
       <SEO title={post.title} />
       <h1>{post.title}</h1>
-      <img
-        alt={post.relationships.field_media_image.field_media_image.alt}
-        src={
+      <Img
+        fluid={
           post.relationships.field_media_image.relationships.field_media_image
-            .localFile.publicURL
+            .localFile.childImageSharp.fluid
         }
       />
-      <div dangerouslySetInnerHTML={{ __html: post.body.processed }} />
+      <div
+        dangerouslySetInnerHTML={{ __html: post.body.processed }}
+        style={{ marginTop: `1.25rem` }}
+      />
     </Layout>
   )
 }
@@ -47,7 +50,11 @@ export const query = graphql`
           relationships {
             field_media_image {
               localFile {
-                publicURL
+                childImageSharp {
+                  fluid(maxWidth: 500) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
               }
             }
           }

@@ -41,6 +41,8 @@ const Header = ({ siteTitle }) => (
           >
             Home
           </Link>
+        </li>
+        <li>
           <Link
             to="/about"
             style={{
@@ -50,6 +52,18 @@ const Header = ({ siteTitle }) => (
             }}
           >
             About
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/articles"
+            style={{
+              color: `white`,
+              textDecoration: `none`,
+              padding: `1.25rem`,
+            }}
+          >
+            Articles
           </Link>
         </li>
       </ul>
